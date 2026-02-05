@@ -8,27 +8,87 @@ search: false
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
 
-/* 상단 메뉴 글자/패딩 줄이기 */
-.masthead__menu-item > a,
-.greedy-nav .visible-links > li > a {
+/* =========================
+   UI TWEAKS (masthead + sidebar scrollbar)
+   Paste this at the VERY BOTTOM of assets/css/main.scss
+   ========================= */
+
+/* ✅ Top nav: overall height/padding smaller */
+.masthead__inner-wrap {
+  padding: 0.35rem 1rem !important;
+}
+
+/* ✅ Top nav: item spacing & weight */
+.masthead__menu-item--lg {
+  padding-inline-end: 1rem !important; /* default is often ~2em */
+  font-weight: 600 !important;
+}
+
+/* ✅ Top nav: visible links */
+.masthead .greedy-nav a {
   font-size: 0.9rem !important;
   padding: 0.25rem 0.55rem !important;
   line-height: 1.15 !important;
 }
 
-/* 모바일/좁은 화면에서 나오는 토글 버튼도 같이 줄이기 */
-.greedy-nav__toggle {
+/* ✅ Top nav: dropdown links (when menu collapses) */
+.masthead .greedy-nav .hidden-links a {
+  font-size: 0.9rem !important;
+  padding: 0.35rem 0.7rem !important;
+}
+
+/* ✅ Top nav: toggle button */
+.masthead .greedy-nav__toggle {
   padding: 0.25rem 0.55rem !important;
 }
 
-/* (B) 왼쪽 사이드바 내부 스크롤바 얇게 */
-.sidebar * {
+/* =========================
+   Sidebar scrollbar (left)
+   ========================= */
+
+/* Target likely scroll containers in Minimal Mistakes sidebar */
+.sidebar__inner,
+.author__urls-wrapper,
+.sidebar .nav__list,
+.sidebar {
   scrollbar-width: thin; /* Firefox */
   scrollbar-color: rgba(0,0,0,.25) transparent;
 }
-.sidebar *::-webkit-scrollbar { width: 6px; height: 6px; }
-.sidebar *::-webkit-scrollbar-thumb {
+
+/* Chrome / Edge / Safari */
+.sidebar__inner::-webkit-scrollbar,
+.author__urls-wrapper::-webkit-scrollbar,
+.sidebar .nav__list::-webkit-scrollbar,
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.sidebar__inner::-webkit-scrollbar-thumb,
+.author__urls-wrapper::-webkit-scrollbar-thumb,
+.sidebar .nav__list::-webkit-scrollbar-thumb,
+.sidebar::-webkit-scrollbar-thumb {
   background: rgba(0,0,0,.25);
   border-radius: 999px;
 }
-.sidebar *::-webkit-scrollbar-track { background: transparent; }
+
+.sidebar__inner::-webkit-scrollbar-track,
+.author__urls-wrapper::-webkit-scrollbar-track,
+.sidebar .nav__list::-webkit-scrollbar-track,
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* =========================
+   (Optional) If you want to REMOVE inner sidebar scrolling entirely,
+   uncomment the block below.
+   ========================= */
+/*
+.sidebar.sticky,
+.sidebar__right.sticky {
+  position: static !important;
+  top: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+*/
