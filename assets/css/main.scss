@@ -92,3 +92,53 @@ search: false
   overflow: visible !important;
 }
 */
+
+/* =========================
+   MASTHEAD (Top nav) - strong override pack
+   Paste at VERY BOTTOM of assets/css/main.scss
+   ========================= */
+
+/* 1) 헤더 자체 위아래 여백 줄이기 (덩치 감소의 핵심) */
+.masthead {
+  padding-top: 0.35rem !important;
+  padding-bottom: 0.35rem !important;
+}
+
+/* 어떤 버전은 inner-wrap에 패딩이 걸림 */
+.masthead__inner-wrap {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* 2) 사이트 제목(왼쪽 로고/타이틀)이 커서 전체가 커 보이는 경우가 많음 */
+.site-title {
+  font-size: 1.05rem !important;
+  line-height: 1.15 !important;
+}
+.site-subtitle {
+  font-size: 0.85rem !important;
+  line-height: 1.15 !important;
+}
+
+/* 3) 메뉴 링크/버튼 영역 전부 줄이기 (PC/모바일/드롭다운 다 커버) */
+.masthead .greedy-nav a,
+.masthead .masthead__menu-item a,
+.masthead .visible-links a,
+.masthead .hidden-links a {
+  font-size: 0.9rem !important;
+  line-height: 1.15 !important;
+  padding: 0.25rem 0.55rem !important;
+}
+
+/* 4) 햄버거 토글(버튼)도 줄이기 */
+.masthead .greedy-nav__toggle,
+.masthead button.greedy-nav__toggle {
+  padding: 0.25rem 0.55rem !important;
+  line-height: 1 !important;
+}
+
+/* 5) 메뉴 아이템 간격(원래 크게 만드는 padding-inline-end) 줄이기 */
+.masthead__menu-item--lg {
+  padding-inline-end: 1rem !important;
+  font-weight: 600 !important;
+}
