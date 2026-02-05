@@ -8,38 +8,27 @@ search: false
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
 
-/* 1) 상단 메뉴 글씨/패딩(클릭 영역) 줄이기 */
-.masthead__menu-item a,
-.greedy-nav a {
-  font-size: 0.95rem;
-  padding: 0.35rem 0.6rem;
-  line-height: 1.2;
+/* 상단 메뉴 글자/패딩 줄이기 */
+.masthead__menu-item > a,
+.greedy-nav .visible-links > li > a {
+  font-size: 0.9rem !important;
+  padding: 0.25rem 0.55rem !important;
+  line-height: 1.15 !important;
 }
 
-/* Sidebar scrollbar: thinner & cleaner */
-.sidebar,
-.sidebar__right,
-.sidebar__inner {
-  scrollbar-width: thin;                      /* Firefox */
+/* 모바일/좁은 화면에서 나오는 토글 버튼도 같이 줄이기 */
+.greedy-nav__toggle {
+  padding: 0.25rem 0.55rem !important;
+}
+
+/* (B) 왼쪽 사이드바 내부 스크롤바 얇게 */
+.sidebar * {
+  scrollbar-width: thin; /* Firefox */
   scrollbar-color: rgba(0,0,0,.25) transparent;
 }
-
-/* Chrome / Edge / Safari */
-.sidebar::-webkit-scrollbar,
-.sidebar__right::-webkit-scrollbar,
-.sidebar__inner::-webkit-scrollbar {
-  width: 6px;
-}
-
-.sidebar::-webkit-scrollbar-thumb,
-.sidebar__right::-webkit-scrollbar-thumb,
-.sidebar__inner::-webkit-scrollbar-thumb {
-  border-radius: 999px;
+.sidebar *::-webkit-scrollbar { width: 6px; height: 6px; }
+.sidebar *::-webkit-scrollbar-thumb {
   background: rgba(0,0,0,.25);
+  border-radius: 999px;
 }
-
-.sidebar::-webkit-scrollbar-track,
-.sidebar__right::-webkit-scrollbar-track,
-.sidebar__inner::-webkit-scrollbar-track {
-  background: transparent;
-}
+.sidebar *::-webkit-scrollbar-track { background: transparent; }
