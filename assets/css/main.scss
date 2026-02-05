@@ -98,9 +98,6 @@ search: false
    Paste at VERY BOTTOM of assets/css/main.scss
    ========================= */
 
-/* ✅ 적용 확인용(확인되면 삭제 가능): 상단 네비 아래에 초록 줄 */
-/* #site-nav { border-bottom: 2px solid rgba(0,255,0,.25) !important; } */
-
 /* 1) 상단바 덩치 줄이기(바깥/안쪽 패딩) */
 .masthead,
 header.masthead {
@@ -164,3 +161,4 @@ nav#site-nav.greedy-nav,
   padding: 0.12rem 0.35rem !important;
   line-height: 1 !important;
 }
+
