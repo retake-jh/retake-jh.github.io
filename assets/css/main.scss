@@ -7,3 +7,11 @@ search: false
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
+
+/* 1) 상단 메뉴 글씨/패딩(클릭 영역) 줄이기 */
+.masthead__menu-item a,
+.greedy-nav a {
+  font-size: 0.95rem;
+  padding: 0.35rem 0.6rem;
+  line-height: 1.2;
+}
