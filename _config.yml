@@ -114,7 +114,7 @@ analytics:
 # Site Author
 author:
   name             : "Jeonghun Kim"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/assets/images/RetakeCat.png" # path of avatar image, e.g. 
   bio              : "Documenting my learning journey."
   location         : "Korea"
   email            : "retakejh.dev@gmail.com"
