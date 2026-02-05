@@ -142,3 +142,61 @@ search: false
   padding-inline-end: 1rem !important;
   font-weight: 600 !important;
 }
+
+/* =========================
+   FORCE: Top masthead/nav size down
+   Paste at VERY BOTTOM of assets/css/main.scss
+   ========================= */
+
+/* (확인용) 이게 보이면 masthead를 제대로 잡고 있는 거임 — 확인 후 지워도 됨 */
+/* .masthead { outline: 2px solid rgba(255,0,0,.25) !important; } */
+
+/* 1) 헤더 자체 덩치 줄이기 */
+header.masthead,
+.masthead {
+  padding-top: 0.35rem !important;
+  padding-bottom: 0.35rem !important;
+}
+
+/* 2) 내부 래퍼 패딩도 줄이기(버전에 따라 여기서 커짐) */
+.masthead__inner-wrap,
+.masthead .wrapper {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* 3) 사이트 타이틀이 커서 메뉴가 큰 것처럼 보이는 경우가 많아서 같이 줄임 */
+.masthead .site-title {
+  font-size: 1.05rem !important;
+  line-height: 1.15 !important;
+}
+
+/* 4) 메뉴 전체 폰트 사이즈 자체를 낮춤(링크만이 아니라 nav 전체) */
+.masthead__menu,
+nav.greedy-nav,
+.greedy-nav {
+  font-size: 0.9rem !important;
+  line-height: 1.15 !important;
+}
+
+/* 5) 보이는 메뉴/숨은 메뉴(드롭다운)/모바일 토글까지 싹 다 줄이기 */
+.masthead .greedy-nav a,
+.masthead .masthead__menu-item > a,
+.masthead .visible-links > li > a,
+.masthead .hidden-links a {
+  font-size: 0.9rem !important;
+  line-height: 1.15 !important;
+  padding: 0.25rem 0.55rem !important;
+}
+
+/* 6) 메뉴 아이템 간격(기본이 커 보이게 하는 부분) */
+.masthead__menu-item--lg {
+  padding-inline-end: 1rem !important;
+  font-weight: 600 !important;
+}
+
+/* 7) 토글 버튼도 */
+.masthead .greedy-nav__toggle {
+  padding: 0.25rem 0.55rem !important;
+  line-height: 1 !important;
+}
