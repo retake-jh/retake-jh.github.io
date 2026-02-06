@@ -8,6 +8,9 @@ main:
     url: /tags/
   - title: "About"
     url: /about/
+  - title: "Search"
+    url: /search/
+
 
 # sidebar links (fields)
 fields:
