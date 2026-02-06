@@ -353,31 +353,17 @@ div.highlighter-rouge.language-css > .highlight::after { content: "CSS"; }
   appearance: textfield;
 }
 
-/* clear (X) button */
-.layout--search .search-clear {
-  position: absolute;
-  right: 0.55rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 2rem;
-  height: 2rem;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(0,0,0,0.18);
-  color: inherit;
-
-  font-size: 1.25rem;
-  line-height: 1;
-  cursor: pointer;
+/* Search input: remove space for X button */
+.layout--search .searchbox {
+  max-width: 38rem;
+  margin: 0.9rem auto 0.25rem;
 }
 
-.layout--search .search-clear:hover {
-  background: rgba(0,0,0,0.28);
+.layout--search input#search.search-input,
+.layout--search .search-input {
+  height: 2.55rem;
+  padding: 0.45rem 0.95rem !important; /* 오른쪽 여백을 원래대로 */
+  border-radius: 12px;
 }
 
 /* 도움말(내가 만든 meta) 숨기기 */
