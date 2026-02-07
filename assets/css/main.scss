@@ -370,3 +370,74 @@ div.highlighter-rouge.language-css > .highlight::after { content: "CSS"; }
 .layout--search .search-meta {
   display: none !important;
 }
+
+/* ===== Sidebar accordion: parent vs child typography + toggle button ===== */
+
+/* (1) 부모/자식 글자 크기 차이 */
+.sidebar .nav__list .nav__row--parent .nav__sub-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+.sidebar .nav__list .nav__link--child {
+  font-size: 0.92rem;
+  font-weight: 500;
+  opacity: 0.88;
+}
+
+.sidebar .nav__list .nav__link--grandchild {
+  font-size: 0.88rem;
+  font-weight: 450;
+  opacity: 0.82;
+}
+
+/* (2) children 들여쓰기 + 구분선(다크에서 구분감 ↑) */
+.sidebar .nav__list .nav__children {
+  margin-top: 0.25rem;
+  padding-left: 0.9rem;
+  border-left: 1px solid rgba(255,255,255,0.10);
+}
+.sidebar .nav__list .nav__grandchildren {
+  margin-top: 0.2rem;
+  padding-left: 0.95rem;
+  border-left: 1px solid rgba(255,255,255,0.08);
+}
+
+/* (3) 토글(▶) 버튼이 더 ‘버튼’처럼 보이게 */
+.sidebar .nav__list .nav__toggle-label {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 10px;
+  cursor: pointer;
+  user-select: none;
+  opacity: 0.9;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.04);
+}
+
+.sidebar .nav__list .nav__toggle-label::before {
+  content: "▸";
+  display: inline-block;
+  line-height: 1;
+  transform: rotate(0deg);
+  transition: transform 0.15s ease;
+}
+
+/* (4) 열리면 ▶ 회전 */
+.sidebar .nav__list .nav__toggle:checked + .nav__row--parent .nav__toggle-label::before {
+  transform: rotate(90deg);
+}
+.sidebar .nav__list .nav__toggle--child:checked + .nav__row--child .nav__toggle-label::before {
+  transform: rotate(90deg);
+}
+
+/* (5) 현재(active) 항목은 더 또렷하게 */
+.sidebar .nav__list a.active {
+  font-weight: 800;
+  opacity: 1;
+}

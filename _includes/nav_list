@@ -1,27 +1,112 @@
+{% assign navigation = site.data.navigation[include.nav] %}
+
 <nav class="nav__list">
-  {% if page.sidebar.title %}<h3 class="nav__title" style="padding-left: 0;">{{ page.sidebar.title }}</h3>{% endif %}
-  <input id="ac-toc" name="accordion-toc" type="checkbox" />
-  <label for="ac-toc">{{ site.data.ui-text[site.locale].menu_label | default: "Toggle Menu" }}</label>
+  {% if page.sidebar.title %}
+    <h3 class="nav__title" style="padding-left: 0;">{{ page.sidebar.title }}</h3>
+  {% endif %}
+
+  {%- comment -%}
+  모바일에서 "Toggle Menu"가 여러 nav에서 겹치지 않게 id를 nav별로 유니크하게 만듦
+  {%- endcomment -%}
+  {% capture toc_id %}ac-toc-{{ include.nav | slugify }}{% endcapture %}
+  <input id="{{ toc_id }}" name="accordion-toc" type="checkbox" />
+  <label for="{{ toc_id }}">{{ site.data.ui-text[site.locale].menu_label | default: "Toggle Menu" }}</label>
+
   <ul class="nav__items">
-    {% for navname in include.nav %}
-      {% assign navigation = site.data.navigation[navname] %}
-      {% for nav in navigation %}
-        <li>
+    {% for nav in navigation %}
+
+      {%- assign has_children = nav.children != null -%}
+
+      {%- comment -%}
+      현재 페이지가 이 섹션(부모/자식/손자)에 속하면 기본으로 펼쳐두기
+      {%- endcomment -%}
+      {% assign is_open = false %}
+      {% if nav.url and nav.url == page.url %}{% assign is_open = true %}{% endif %}
+      {% if has_children %}
+        {% for child in nav.children %}
+          {% if child.url and child.url == page.url %}{% assign is_open = true %}{% endif %}
+          {% if child.children != null %}
+            {% for grand in child.children %}
+              {% if grand.url and grand.url == page.url %}{% assign is_open = true %}{% endif %}
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+
+      {% capture toggle_id %}nav-toggle-{{ include.nav | slugify }}-{{ forloop.index0 }}{% endcapture %}
+
+      <li class="nav__item">
+        {% if has_children %}
+          <input class="nav__toggle" id="{{ toggle_id }}" type="checkbox" {% if is_open %}checked{% endif %}>
+        {% endif %}
+
+        <div class="nav__row nav__row--parent">
           {% if nav.url %}
-            <a href="{{ nav.url | relative_url }}"><span class="nav__sub-title">{{ nav.title }}</span></a>
+            <a class="nav__link nav__link--parent" href="{{ nav.url | relative_url }}">
+              <span class="nav__sub-title">{{ nav.title }}</span>
+            </a>
           {% else %}
-            <span class="nav__sub-title">{{ nav.title }}</span>
+            <span class="nav__sub-title nav__link nav__link--parent">{{ nav.title }}</span>
           {% endif %}
 
-          {% if nav.children != null %}
-          <ul>
+          {% if has_children %}
+            <label class="nav__toggle-label" for="{{ toggle_id }}">
+              <span class="visually-hidden">Toggle submenu</span>
+            </label>
+          {% endif %}
+        </div>
+
+        {% if has_children %}
+          <ul class="nav__children">
             {% for child in nav.children %}
-              <li><a href="{{ child.url | relative_url }}"{% if child.url == page.url %} class="active"{% endif %}>{{ child.title }}</a></li>
+
+              {% assign child_has_children = child.children != null %}
+              {% assign child_open = false %}
+              {% if child.url and child.url == page.url %}{% assign child_open = true %}{% endif %}
+              {% if child_has_children %}
+                {% for grand in child.children %}
+                  {% if grand.url and grand.url == page.url %}{% assign child_open = true %}{% endif %}
+                {% endfor %}
+              {% endif %}
+
+              {% capture child_toggle_id %}nav-toggle-{{ include.nav | slugify }}-{{ forloop.parentloop.index0 }}-{{ forloop.index0 }}{% endcapture %}
+
+              <li class="nav__child-item">
+                {% if child_has_children %}
+                  <input class="nav__toggle nav__toggle--child" id="{{ child_toggle_id }}" type="checkbox" {% if child_open %}checked{% endif %}>
+                {% endif %}
+
+                <div class="nav__row nav__row--child">
+                  {% if child.url %}
+                    <a class="nav__link nav__link--child{% if child.url == page.url %} active{% endif %}"
+                       href="{{ child.url | relative_url }}">{{ child.title }}</a>
+                  {% else %}
+                    <span class="nav__link nav__link--child">{{ child.title }}</span>
+                  {% endif %}
+
+                  {% if child_has_children %}
+                    <label class="nav__toggle-label nav__toggle-label--child" for="{{ child_toggle_id }}">
+                      <span class="visually-hidden">Toggle submenu</span>
+                    </label>
+                  {% endif %}
+                </div>
+
+                {% if child_has_children %}
+                  <ul class="nav__grandchildren">
+                    {% for grand in child.children %}
+                      <li class="nav__grandchild-item">
+                        <a class="nav__link nav__link--grandchild{% if grand.url == page.url %} active{% endif %}"
+                           href="{{ grand.url | relative_url }}">{{ grand.title }}</a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </li>
+
             {% endfor %}
           </ul>
-          {% endif %}
-        </li>
-      {% endfor %}
+        {% endif %}
+      </li>
     {% endfor %}
   </ul>
 </nav>
