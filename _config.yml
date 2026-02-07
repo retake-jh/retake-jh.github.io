@@ -325,3 +325,8 @@ defaults:
       comments: # true
       share: true
       related: true
+      read_time: true
+      show_date: true
+
+last_modified_at: true
+related_posts: true
