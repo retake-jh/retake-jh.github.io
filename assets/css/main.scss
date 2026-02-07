@@ -371,55 +371,85 @@ div.highlighter-rouge.language-css > .highlight::after { content: "CSS"; }
   display: none !important;
 }
 
-/* ===== Sidebar accordion: parent vs child typography + toggle button ===== */
+/* ===== Sidebar accordion: toggle works + parent/child typography ===== */
 
-/* (1) 부모/자식 글자 크기 차이 */
+/* 1) 토글 input은 화면 밖으로만 숨기고(중요), pointer-events는 막지 않기 */
+.sidebar .nav__list .nav__toggle {
+  position: absolute;
+  left: -9999px;
+}
+
+/* 2) 기본은 접힘 (테마 CSS가 이길 수 있어서 !important) */
+.sidebar .nav__list .nav__toggle:not(:checked) ~ .nav__children {
+  display: none !important;
+}
+.sidebar .nav__list .nav__toggle--child:not(:checked) ~ .nav__grandchildren {
+  display: none !important;
+}
+
+/* 3) 한 줄 레이아웃 */
+.sidebar .nav__list .nav__row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  position: relative;
+}
+
+/* 링크가 화살표를 덮지 않게 */
+.sidebar .nav__list .nav__link--parent,
+.sidebar .nav__list .nav__link--child {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* 4) 글자 크기: dark 기준으로 “부모/자식/손자” 차이만 살짝 */
 .sidebar .nav__list .nav__row--parent .nav__sub-title {
-  font-size: 1.05rem;
-  font-weight: 800;
+  font-size: 0.95rem;   /* (기존 너무 큼 → 줄임) */
+  font-weight: 750;
   letter-spacing: 0.01em;
 }
 
 .sidebar .nav__list .nav__link--child {
-  font-size: 0.92rem;
-  font-weight: 500;
-  opacity: 0.88;
+  font-size: 0.88rem;
+  font-weight: 520;
+  opacity: 0.90;
 }
 
 .sidebar .nav__list .nav__link--grandchild {
-  font-size: 0.88rem;
+  font-size: 0.84rem;
   font-weight: 450;
-  opacity: 0.82;
+  opacity: 0.86;
 }
 
-/* (2) children 들여쓰기 + 구분선(다크에서 구분감 ↑) */
+/* 5) 들여쓰기 + 구분선(다크에서 구분감↑) */
 .sidebar .nav__list .nav__children {
   margin-top: 0.25rem;
-  padding-left: 0.9rem;
+  padding-left: 0.85rem;
   border-left: 1px solid rgba(255,255,255,0.10);
 }
 .sidebar .nav__list .nav__grandchildren {
-  margin-top: 0.2rem;
-  padding-left: 0.95rem;
+  margin-top: 0.20rem;
+  padding-left: 0.90rem;
   border-left: 1px solid rgba(255,255,255,0.08);
 }
 
-/* (3) 토글(▶) 버튼이 더 ‘버튼’처럼 보이게 */
+/* 6) ▶ 토글 버튼: 클릭이 확실하게 되도록 z-index 부여 */
 .sidebar .nav__list .nav__toggle-label {
   margin-left: auto;
+  flex: 0 0 auto;
+  z-index: 5;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.35rem;
-  height: 1.35rem;
+  width: 1.25rem;
+  height: 1.25rem;
   border-radius: 10px;
   cursor: pointer;
   user-select: none;
-  opacity: 0.9;
-  border: 1px solid rgba(255,255,255,0.10);
+  opacity: 0.92;
+  border: 1px solid rgba(255,255,255,0.12);
   background: rgba(255,255,255,0.04);
 }
-
 .sidebar .nav__list .nav__toggle-label::before {
   content: "▸";
   display: inline-block;
@@ -428,7 +458,7 @@ div.highlighter-rouge.language-css > .highlight::after { content: "CSS"; }
   transition: transform 0.15s ease;
 }
 
-/* (4) 열리면 ▶ 회전 */
+/* 7) 열리면 회전 (input 다음 요소가 row인 구조 기준) */
 .sidebar .nav__list .nav__toggle:checked + .nav__row--parent .nav__toggle-label::before {
   transform: rotate(90deg);
 }
@@ -436,7 +466,7 @@ div.highlighter-rouge.language-css > .highlight::after { content: "CSS"; }
   transform: rotate(90deg);
 }
 
-/* (5) 현재(active) 항목은 더 또렷하게 */
+/* 8) active는 조금 더 또렷하게 */
 .sidebar .nav__list a.active {
   font-weight: 800;
   opacity: 1;
