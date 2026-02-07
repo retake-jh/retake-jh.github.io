@@ -1,7 +1,7 @@
 ---
 title: "리버싱 핵심원리"
 layout: single
-permalink: /reversing/reversing-leaf/
+permalink: /categories/reversing/reversing-leaf/
 sidebar:
   nav: fields
 ---
