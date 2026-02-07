@@ -526,3 +526,13 @@ div.highlighter-rouge.language-css > .highlight::after { content: "CSS"; }
 .sidebar .nav__list .nav__grandchildren {
   border-left: 1px solid rgba(255,255,255,0.06) !important;
 }
+
+/* toggle 아이콘(›) 크기만 살짝 키우기 */
+.sidebar .nav__list .nav__toggle-label {
+  width: 1.18rem !important;
+  height: 1.18rem !important;
+}
+
+.sidebar .nav__list .nav__toggle-label::before {
+  font-size: 1.22rem !important;
+}
