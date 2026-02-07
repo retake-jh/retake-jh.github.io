@@ -16,9 +16,14 @@ fields:
     url: /categories/pwnable/
   - title: "Reversing"
     url: /categories/reversing/
+    children:
+      - title: "리버싱 핵심원리"
+        url: /categories/reversing/reversing-leaf/
   - title: "Web"
     url: /categories/web/
   - title: "Network"
     url: /categories/network/
   - title: "All Categories"
     url: /categories/
+
+
