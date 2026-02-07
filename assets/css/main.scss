@@ -471,3 +471,58 @@ div.highlighter-rouge.language-css > .highlight::after { content: "CSS"; }
   font-weight: 800;
   opacity: 1;
 }
+
+/* ===== Sidebar accordion: smaller children + cleaner toggle ===== */
+
+/* 자식/손자 글자 더 작게 */
+.sidebar .nav__list .nav__link--child {
+  font-size: 0.82rem !important;
+  font-weight: 520 !important;
+  opacity: 0.90 !important;
+}
+
+.sidebar .nav__list .nav__link--grandchild {
+  font-size: 0.79rem !important;
+  font-weight: 450 !important;
+  opacity: 0.86 !important;
+}
+
+/* 토글 버튼: “박스” 느낌 줄이고, 미니멀하게 */
+.sidebar .nav__list .nav__toggle-label {
+  width: 1.05rem !important;
+  height: 1.05rem !important;
+  border-radius: 8px !important;
+  border: 0 !important;                 /* 테두리 제거 */
+  background: transparent !important;   /* 배경 제거 */
+  opacity: 0.65 !important;
+}
+
+/* 깔끔한 chevron(›)로 변경 + 부드러운 회전 */
+.sidebar .nav__list .nav__toggle-label::before {
+  content: "›" !important;              /* 더 미니멀한 기호 */
+  font-size: 1.05rem !important;
+  transform: rotate(0deg);
+  transition: transform 0.15s ease, opacity 0.15s ease;
+  opacity: 0.75;
+}
+
+/* hover 시만 살짝 보이게 */
+.sidebar .nav__list .nav__row:hover .nav__toggle-label {
+  opacity: 0.95 !important;
+}
+
+/* 열리면 아래로(회전) */
+.sidebar .nav__list .nav__toggle:checked + .nav__row--parent .nav__toggle-label::before {
+  transform: rotate(90deg) !important;
+}
+.sidebar .nav__list .nav__toggle--child:checked + .nav__row--child .nav__toggle-label::before {
+  transform: rotate(90deg) !important;
+}
+
+/* 들여쓰기/구분선은 너무 튀면 살짝 약하게 */
+.sidebar .nav__list .nav__children {
+  border-left: 1px solid rgba(255,255,255,0.08) !important;
+}
+.sidebar .nav__list .nav__grandchildren {
+  border-left: 1px solid rgba(255,255,255,0.06) !important;
+}
