@@ -539,13 +539,13 @@ div.highlighter-rouge.language-css > .highlight::after { content: "CSS"; }
 
 /* 부모/자식 카테고리 글자 크기 조금씩 줄이기 */
 .sidebar .nav__list .nav__row--parent .nav__sub-title {
-  font-size: 0.90rem !important;
-}
-
-.sidebar .nav__list .nav__link--child {
   font-size: 0.80rem !important;
 }
 
+.sidebar .nav__list .nav__link--child {
+  font-size: 0.70rem !important;
+}
+
 .sidebar .nav__list .nav__link--grandchild {
-  font-size: 0.78rem !important;
+  font-size: 0.65rem !important;
 }
