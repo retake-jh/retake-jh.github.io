@@ -638,3 +638,28 @@ div.highlighter-rouge[data-file]::after,
 figure.highlight[data-file]::after {
   top: 7px !important;
 }
+
+/* ===== Fix: filename label clipped in header bar ===== */
+
+/* 파일명 라벨은 헤더바 중앙에 오게(잘림 방지) + 위로 올리기 */
+div.highlighter-rouge[data-file]::after,
+figure.highlight[data-file]::after {
+  top: 17px !important;                /* 34px의 중앙 */
+  transform: translateY(-50%) !important;
+  z-index: 40 !important;              /* 헤더 위로 */
+
+  /* 긴 파일명 잘림 방지(우측 배지/복사 버튼 공간 확보) */
+  max-width: calc(100% - 130px) !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+
+  /* 헤더 안에서 안정적인 높이 */
+  line-height: 1 !important;
+}
+
+/* 헤더(상단바) 자체는 뒤로 */
+div.highlighter-rouge::before,
+figure.highlight::before {
+  z-index: 1 !important;
+}
