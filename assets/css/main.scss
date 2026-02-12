@@ -550,35 +550,31 @@ div.highlighter-rouge.language-css > .highlight::after { content: "CSS"; }
   font-size: 0.65rem !important;
 }
 
-/* ===== code block header(data-file) + copy button overlap fix ===== */
+/* ===== Fix: code LANG badge vs copy button overlap (Minimal Mistakes) ===== */
 
-/* 코드블록 래퍼를 기준으로 버튼을 절대배치할 수 있게 */
-.highlighter-rouge,
-figure.highlight {
-  position: relative;
+/* 1) LANG 배지(우상단)를 왼쪽으로 살짝 이동해서 버튼 자리 확보 */
+div.highlighter-rouge > .highlight::after {
+  right: 3.2rem !important; /* 기존 10px → 버튼 공간 확보 */
 }
 
-/* 파일명 헤더(너가 만들어둔 스타일)가 있을 때: 오른쪽에 버튼 공간 확보 */
-.highlighter-rouge[data-file]::before,
-figure.highlight[data-file]::before {
-  padding-right: 3.0rem !important; /* 복사버튼 자리 */
-}
-
-/* Minimal Mistakes 기본 복사 버튼 위치/크기 정리 */
-.copy-code-button {
+/* 2) 복사 버튼은 우상단(타이틀 바)에 고정 */
+div.highlighter-rouge .copy-code-button,
+figure.highlight .copy-code-button {
   position: absolute !important;
-  top: 0.42rem !important;   /* 헤더 안쪽으로 */
-  right: 0.55rem !important;
-  z-index: 10 !important;
+  top: 7px !important;
+  right: 10px !important;
+  z-index: 30 !important;
 
-  /* 버튼이 헤더와 어울리게(너무 튀면 여기만 조절) */
-  padding: 0.18rem 0.38rem !important;
-  border-radius: 10px !important;
+  padding: 0.18rem 0.45rem !important;
+  border-radius: 999px !important;
   line-height: 1 !important;
+  font-size: 0.72rem !important;
 }
 
-/* 파일명 헤더가 있는 코드블록에서만 미세 조정(선택) */
-.highlighter-rouge[data-file] .copy-code-button,
-figure.highlight[data-file] .copy-code-button {
-  top: 0.40rem !important;
+/* 3) (선택) 버튼이 너무 눈에 띄면 hover에서만 진하게 */
+div.highlighter-rouge .copy-code-button {
+  opacity: 0.75 !important;
+}
+div.highlighter-rouge:hover .copy-code-button {
+  opacity: 1 !important;
 }
