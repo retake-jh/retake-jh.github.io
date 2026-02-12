@@ -550,82 +550,91 @@ div.highlighter-rouge.language-css > .highlight::after { content: "CSS"; }
   font-size: 0.65rem !important;
 }
 
-/* ===== FINAL: code top-bar alignment (filename / LANG badge / copy btn) ===== */
+/* =========================================================
+   COPY BUTTON ALIGN FIX (Minimal Mistakes v4.26+)
+   - class is .clipboard-copy-button (NOT .copy-code-button)
+   - align with your top bar + language badge
+   ========================================================= */
 
-/* 0) 지난번 깨짐 원인 제거: .highlight 기준 배치 금지 (무조건 바깥 래퍼 기준) */
-div.highlighter-rouge > .highlight {
-  position: static !important;
+/* wrapper reference point */
+div.highlighter-rouge,
+figure.highlight {
+  position: relative !important;
 }
 
-/* top bar 높이(너 설정이 34px) */
-div.highlighter-rouge { --codebar-h: 34px; }
-
-/* 1) 파일명(왼쪽) : top bar 중앙 정렬 */
-div.highlighter-rouge[data-file]::after {
-  top: calc(var(--codebar-h) / 2) !important;
-  transform: translateY(-50%) !important;
-  z-index: 5 !important;
-
-  /* 긴 파일명 대비(겹침 방지) */
-  display: block;
-  max-width: calc(100% - 120px);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+/* top bar layer order (optional but helps) */
+div.highlighter-rouge::before,
+figure.highlight::before {
+  z-index: 1 !important;
 }
 
-/* 2) 언어 배지(오른쪽) : top bar 중앙 + 복사 버튼 공간 확보 */
-div.highlighter-rouge > .highlight::after {
-  top: calc(var(--codebar-h) / 2) !important;
-  transform: translateY(-50%) !important;
-  right: 3.0rem !important;
-  z-index: 6 !important;
-}
-
-/* 3) 복사 버튼: top bar 우상단 고정 + 아이콘만 */
-div.highlighter-rouge .copy-code-button {
+/* ✅ Copy button: move into the 34px header bar */
+div.highlighter-rouge .clipboard-copy-button,
+figure.highlight .clipboard-copy-button {
   position: absolute !important;
-  top: calc(var(--codebar-h) / 2) !important;
-  transform: translateY(-50%) !important;
+  top: 7px !important;      /* header bar 안쪽 */
   right: 10px !important;
-  z-index: 7 !important;
 
   width: 28px !important;
   height: 22px !important;
   padding: 0 !important;
-
-  border: 0 !important;
-  border-radius: 10px !important;
-  background: transparent !important;
+  margin: 0 !important;
 
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
 
-  opacity: 0.65 !important;
-  cursor: pointer !important;
+  background: transparent !important;
+  border: 0 !important;
+  outline: none !important;
 
-  /* 기존 텍스트 숨김 */
-  font-size: 0 !important;
-  color: transparent !important;
+  opacity: 0.85 !important;
+  z-index: 30 !important;   /* header 위로 */
 }
 
-/* 아이콘(텍스트 대신) */
-div.highlighter-rouge .copy-code-button::before {
-  content: "⧉"; /* 깔끔한 복사 아이콘 */
-  font-size: 14px;
-  line-height: 1;
-  opacity: 0.9;
+/* hover */
+div.highlighter-rouge .clipboard-copy-button:hover,
+figure.highlight .clipboard-copy-button:hover {
+  opacity: 1 !important;
 }
 
-/* hover 시만 살짝 강조 */
-div.highlighter-rouge:hover .copy-code-button { opacity: 1 !important; }
-div.highlighter-rouge .copy-code-button:hover {
-  background: rgba(255,255,255,0.06) !important;
+/* ✅ Theme icon(<i>) position reset (각 안맞는 원인 제거) */
+div.highlighter-rouge .clipboard-copy-button i,
+figure.highlight .clipboard-copy-button i {
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+  font-size: 1.05rem !important;
+  line-height: 1 !important;
 }
 
-/* copied 상태(테마가 class 붙일 때) */
-div.highlighter-rouge .copy-code-button.copied::before {
-  content: "✓";
-  font-size: 14px;
+/* ✅ copied(체크) 토글이 깔끔하게 보이도록 */
+div.highlighter-rouge .clipboard-copy-button i.fa-check,
+figure.highlight .clipboard-copy-button i.fa-check {
+  display: none !important;
+}
+div.highlighter-rouge .clipboard-copy-button.copied i.fa-copy,
+figure.highlight .clipboard-copy-button.copied i.fa-copy {
+  display: none !important;
+}
+div.highlighter-rouge .clipboard-copy-button.copied i.fa-check,
+figure.highlight .clipboard-copy-button.copied i.fa-check {
+  display: inline-block !important;
+}
+
+/* ✅ Language badge(예: CPP) : 복사버튼이랑 겹치지 않게 왼쪽으로 */
+div.highlighter-rouge > .highlight::after,
+figure.highlight > .highlight::after {
+  top: 7px !important;
+  right: 46px !important; /* copy 버튼 자리 확보 */
+
+  height: 22px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+/* (선택) 파일명 라벨도 헤더 기준선에 맞춤 */
+div.highlighter-rouge[data-file]::after,
+figure.highlight[data-file]::after {
+  top: 7px !important;
 }
