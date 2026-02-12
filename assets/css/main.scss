@@ -639,3 +639,47 @@ figure.highlight .copy-code-button.copied::before {
   content: "✅";
   font-size: 14px;
 }
+
+/* ===== Align: filename / lang badge / copy button in code top bar ===== */
+
+/* 상단바 높이(너 코드에서 34px) 기준으로 중앙 정렬 */
+div.highlighter-rouge { --codebar-h: 34px; }
+
+/* lang 배지의 기준 요소를 확실히 잡아주기 */
+div.highlighter-rouge > .highlight {
+  position: relative !important;
+}
+
+/* 파일명(왼쪽) -> 상단바 중앙에 맞춤 */
+div.highlighter-rouge[data-file]::after {
+  top: calc(var(--codebar-h) / 2) !important;
+  transform: translateY(-50%) !important;
+}
+
+/* 언어 배지(오른쪽) -> 상단바 중앙에 맞춤 + 복사버튼 공간 확보 */
+div.highlighter-rouge > .highlight::after {
+  top: calc(var(--codebar-h) / 2) !important;
+  transform: translateY(-50%) !important;
+  right: 3.2rem !important; /* 복사버튼 자리 */
+}
+
+/* 복사 버튼(오른쪽 끝) -> 상단바 중앙에 맞춤 + 크기/모양 정리 */
+div.highlighter-rouge .copy-code-button {
+  position: absolute !important;
+  top: calc(var(--codebar-h) / 2) !important;
+  transform: translateY(-50%) !important;
+  right: 10px !important;
+  z-index: 50 !important;
+
+  height: 22px !important;
+  width: 26px !important;
+  padding: 0 !important;
+
+  border-radius: 10px !important;
+  background: rgba(255,255,255,0.04) !important;
+  border: 1px solid rgba(255,255,255,0.10) !important;
+}
+
+/* hover 때만 조금 선명하게 */
+div.highlighter-rouge .copy-code-button { opacity: 0.75 !important; }
+div.highlighter-rouge:hover .copy-code-button { opacity: 1 !important; }
