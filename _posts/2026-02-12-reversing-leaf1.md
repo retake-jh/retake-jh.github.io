@@ -12,6 +12,7 @@ toc_label: "목차"
 - part/chapter: Part 1 / CH2 Hello world! 리버싱
 - 읽은 페이지: p.13 ~ p.47
 - 목표: Hello World.exe를 분석하여 x96dbg의 사용법 및 원하는 함수를 빨리 찾을 방법 습득
+
 ---
 
 ## 1) Hello world.exe 소스코드 분석
