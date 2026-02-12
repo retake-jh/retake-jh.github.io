@@ -663,3 +663,24 @@ div.highlighter-rouge::before,
 figure.highlight::before {
   z-index: 1 !important;
 }
+
+/* ===== Fix: LANG badge(CPP 등)도 헤더 바 위로 올려서 안 가리게 ===== */
+
+/* 헤더(상단바)는 뒤쪽 */
+div.highlighter-rouge::before,
+figure.highlight::before {
+  z-index: 1 !important;
+}
+
+/* 언어 배지(CPP/JS/PY...)를 헤더 중앙에 맞추고, z-index 올리기 */
+div.highlighter-rouge > .highlight::after,
+figure.highlight > .highlight::after {
+  top: 17px !important;                 /* 34px 헤더의 중앙 */
+  transform: translateY(-50%) !important;
+  z-index: 45 !important;               /* 헤더 바(::before)보다 위 */
+
+  right: 46px !important;               /* 복사 버튼 공간 확보 */
+  height: 22px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
