@@ -39,6 +39,7 @@ int _tmain() { (3)
         typedef CHAR TCHAR;
     #endif
     ```
+
 - _tmain은 위와 비슷하게 tchar.h에서 컴파일러 설정에 따라 **wmain(wmain(int argc, wchar_t* argv[]))** 과 **main(main(int argc, char* argv[]))** 으로 치환된다.
 - **MessageBox** 는 간단한 메시지나 오류 등을 창으로 띄울 수 있게 하는 함수이다. 이 함수도 위와 비슷하게 컴파일러 설정에 따라 **MassageBoxA(ANSI)** 와 **MassageBoxW(unicode)** 로 치환된다.
 - 문자열 앞에 있는 L은 이 문자열이 **wide string** 이란 것을 알려주는 것이다.
