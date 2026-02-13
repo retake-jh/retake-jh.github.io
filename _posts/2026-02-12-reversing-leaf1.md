@@ -29,8 +29,7 @@ int _tmain() { (3)
 
 - #include <windows.h> 는 winAPI를 사용하기 위한 헤더 파일이다
 - #include <tchar.h> 는 컴파일러의 설정 만으로 유니코드(WCHAR/wchar_t)와 아스키코드(CHAR/char)를 간편하게 변경할 수 있게 해주는 헤더 파일이다
-    - {: .notice--warning} <헷갈리는 포인트>
-    tchar.h가 유니코드를 사용하게 해주는 것이 아니다. 유니코드는 Window.h 헤더 파일안에 있는 winnt.h 에서 **wchar_t** 자료형으로 2바이트로 처리하게 된다. 여기서 핵심은 tchar.h은 그저 전처리 과정에서 컴퍼일러 설정을 확인한 후 밑의 메크로를 통해 설정에 맞는 자료형으로 치환해준다.
+    - tchar.h가 유니코드를 사용하게 해주는 것이 아니다. 유니코드는 Window.h 헤더 파일안에 있는 winnt.h 에서 **wchar_t** 자료형으로 2바이트로 처리하게 된다. 여기서 핵심은 tchar.h은 그저 전처리 과정에서 컴퍼일러 설정을 확인한 후 밑의 메크로를 통해 설정에 맞는 자료형으로 치환해준다.
     ```cpp
     #ifdef UNICODE
         typedef WCHAR TCHAR;
