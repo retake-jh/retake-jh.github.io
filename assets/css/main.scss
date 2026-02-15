@@ -686,63 +686,71 @@ figure.highlight > .highlight::after {
 }
 
 /* =========================================================
-   VSCode-like typography (compact) - posts/pages only
+   VSCODE COMPACT MODE (posts/pages only)
+   - base font down -> everything scales together
    ========================================================= */
 
-/* 1) 글 제목(상단 큰 제목) 크기 줄이기 */
-.layout--single .page__title {
-  font-size: 2.05rem !important;
-  line-height: 1.15 !important;
-  margin-bottom: 0.45rem !important;
-}
-@media (max-width: 768px) {
-  .layout--single .page__title {
-    font-size: 1.55rem !important;
-  }
+/* 0) 글 화면만 베이스 폰트 줄이기 (여기 한 줄로 전체 크기 결정) */
+.layout--single {
+  font-size: 14.5px !important; /* ← 더 작게 원하면 14px, 조금 키우려면 15px */
 }
 
-/* 2) 날짜/읽는시간 같은 메타도 조금 작게 */
+/* 1) 글 제목(맨 위) */
+.layout--single .page__title {
+  font-size: 2.05em !important;
+  line-height: 1.15 !important;
+  margin: 0 0 0.35em !important;
+}
+@media (max-width: 768px) {
+  .layout--single .page__title { font-size: 1.55em !important; }
+}
+
+/* 2) 메타(날짜/읽는시간) */
 .layout--single .page__meta,
 .layout--single .page__meta a {
-  font-size: 0.9rem !important;
+  font-size: 0.92em !important;
   opacity: 0.9 !important;
 }
 
-/* 3) 본문 기본 글씨 크기/행간을 VSCode 미리보기 느낌으로 */
+/* 3) 본문 기본 */
 .layout--single .page__content {
-  font-size: 0.95rem !important;
-  line-height: 1.75 !important;
+  font-size: 1em !important;        /* 베이스 따라감 */
+  line-height: 1.75 !important;     /* VSCode/GFM 느낌 */
 }
 
-/* 4) 본문 헤딩 크기 전체적으로 “조금씩” 다운 */
-.layout--single .page__content h1 { font-size: 1.55rem !important; line-height: 1.25 !important; }
-.layout--single .page__content h2 { font-size: 1.30rem !important; line-height: 1.28 !important; }
-.layout--single .page__content h3 { font-size: 1.12rem !important; line-height: 1.32 !important; }
-.layout--single .page__content h4 { font-size: 1.02rem !important; line-height: 1.35 !important; }
+/* 4) 본문 헤딩(크고 두껍게 보이는 주범이라 확실히 다운) */
+.layout--single .page__content h1 { font-size: 1.55em !important; line-height: 1.22 !important; }
+.layout--single .page__content h2 { font-size: 1.30em !important; line-height: 1.25 !important; }
+.layout--single .page__content h3 { font-size: 1.12em !important; line-height: 1.30 !important; }
+.layout--single .page__content h4 { font-size: 1.03em !important; line-height: 1.35 !important; }
 
-/* 헤딩 위아래 간격도 VSCode처럼 좀 타이트하게 */
+/* 헤딩 간격(미리보기처럼 타이트하게) */
 .layout--single .page__content h1,
 .layout--single .page__content h2,
 .layout--single .page__content h3,
 .layout--single .page__content h4 {
-  margin-top: 1.25em !important;
+  margin-top: 1.15em !important;
   margin-bottom: 0.55em !important;
 }
 
-/* 5) 문단/리스트 간격 컴팩트하게 */
+/* 5) 문단/리스트 간격도 컴팩트하게 */
 .layout--single .page__content p { margin: 0 0 0.85em !important; }
-.layout--single .page__content ul,
-.layout--single .page__content ol { margin: 0.35em 0 1.05em 1.15em !important; }
-.layout--single .page__content li { margin: 0.22em 0 !important; }
 
-/* 6) 인라인 코드도 살짝 작게(본문과 균형) */
+.layout--single .page__content ul,
+.layout--single .page__content ol {
+  margin: 0.30em 0 1.00em 1.10em !important;
+  padding-left: 0.9em !important;
+}
+
+.layout--single .page__content li { margin: 0.18em 0 !important; }
+
+/* 6) 인라인 코드/코드블록 글씨도 본문과 균형 */
 .layout--single .page__content code.highlighter-rouge,
 .layout--single .page__content p code,
 .layout--single .page__content li code {
   font-size: 0.92em !important;
 }
 
-/* 7) (선택) 코드블록 안 글씨도 살짝만 줄이기 */
 div.highlighter-rouge pre code {
-  font-size: 0.93em !important;
+  font-size: 0.92em !important;
 }
