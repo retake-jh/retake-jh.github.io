@@ -4,8 +4,6 @@ date: 2026-02-12 18:16:00 +0900
 categories: [reversing, reversing-leaf]
 tags: [reversing, reversing-leaf]
 toc: true
-toc_sticky: true
-toc_label: "목차"
 ---
 
 ## 학습 범위
