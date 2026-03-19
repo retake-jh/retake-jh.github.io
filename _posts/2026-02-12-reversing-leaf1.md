@@ -1,9 +1,8 @@
 ---
 title: "[Reversing-leaf] Part 1 - CH8 abex' crackme #2"
-date: 2026-03-19 18:16:00 +0900
+date: 2026-02-12 18:16:00 +0900
 categories: [Reversing, Reversing-leaf]
 tags: [Reversing, Reversing-leaf]
-toc: true
 ---
 
 ## 학습 범위
