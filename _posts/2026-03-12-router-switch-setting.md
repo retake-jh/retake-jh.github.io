@@ -21,7 +21,7 @@ tags: [Network, Router, Switch]
 
 |**명령어**|**기능**|
 |---|---|
-|**enable or en**|관리자 모드로 들어가는 명령 -> `Router#`|
+|**enable** or **en**|관리자 모드로 들어가는 명령 -> `Router#`|
 |**configure terminal or conf t**|관리자 모드에서 설정 모드로 돌아가는 명령 -> `Router(config)#`|
 |**hostname [name]**|호스트 이름 변경|
 |**login**|로그인 명령|
